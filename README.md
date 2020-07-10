@@ -1,6 +1,8 @@
 # sPYnning
 Source code for animating a spinning globe, consisting of hexagons. This can be used to generate images similar to the ones in [the original twitter tweet](https://twitter.com/cmmndy/status/1281187892845588480). Below are some images that are created in the Jupyter notebook.
 
+For more images and GIFs, check out https://www.camminady.org/spinningglobe
+
 ## How To?
 
 ### Locally
