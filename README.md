@@ -62,7 +62,7 @@ gif.save(frames,"spinning_earth.gif")
 
 ## Diffusion equation (only faked, not for scientific purposes)
 We need an update rule for each time step.
-```
+```python
 def diffusion(c,nextc,gamma = 0.2):
     # Not really spherical diffusion
     # because I ignore the cell size,
@@ -70,7 +70,7 @@ def diffusion(c,nextc,gamma = 0.2):
     return c+gamma*(np.sum(nextc) -len(nextc)*c)
 ```   
 Then we can update the states in every iteration
-```
+```python
 # pick the number of cells on the globe from this list
 # [92, 492, 1212, 2252, 3612, 5292, 7292, 9612, 12252, 15212]
 nq = 9612
@@ -114,7 +114,7 @@ gif.save(frames, "diffusion.gif", duration = 100)
 
 ## Game of Life
 We gain need an update rule. A cell's state is updated based upon the adjacent neighbours. Here you can be creative.
-```
+```python
 def gameoflife(c,nextc):
     # update the cell c based upon the neighbours nextc
     # c is true => cell alive
@@ -132,7 +132,7 @@ def gameoflife(c,nextc):
     return c
 ```
 Then create the animation.
-```
+```python
 # pick the number of cells on the globe from this list
 # [92, 492, 1212, 2252, 3612, 5292, 7292, 9612, 12252, 15212]
 nq = 5292
