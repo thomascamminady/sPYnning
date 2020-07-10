@@ -6,7 +6,11 @@ Source code for animating a spinning globe, consisting of hexagons. This can be 
 ### Locally
 Clone the repository and run through the cells of `visworld.ipynb` found [here](https://github.com/camminady/sPYnning/blob/master/visworld.ipynb).
 
-If you encounter an issue with `mpl_toolkits` (I did), this [link](https://stackoverflow.com/questions/37661119/python-mpl-toolkits-installation-issue) might  help. Otherwise, try the Google Colab version.
+If you encounter an issue with `mpl_toolkits` (I did), this [link](https://stackoverflow.com/questions/37661119/python-mpl-toolkits-installation-issue) might  help. To deal with that issue, the Google Colab version additionally runs
+```
+sudo apt-get install libgeos-dev
+sudo pip3 install https://github.com/matplotlib/basemap/archive/master.zip
+```
 
 ### Google Colab
 I ported the Jupyter notebook to Google Colab. In the process, I had move the `helpers.py` file in the notebook.
