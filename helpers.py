@@ -1,4 +1,4 @@
-from numpy import loadtxt, degrees, arcsin, arctan2, sort, unique
+from numpy import loadtxt, degrees, arcsin, arctan2, sort, unique, ones, zeros_like, array
 from mpl_toolkits.basemap import Basemap
 import reverse_geocoder as rg
 import randomcolor
@@ -72,17 +72,37 @@ def getquadrature(nq):
     # Also convert to latitute, longitude
     quadrature["lat"] = degrees(arcsin(quadrature["xyz"][:,2]/1))
     quadrature["lon"] = degrees(arctan2(quadrature["xyz"][:,1], quadrature["xyz"][:,0]))
+    
+    # Compute connectivity between nodes
+    connection = -100*ones((quadrature["nq"],6),dtype=int)
+    for qp in range(quadrature["nq"]):
+        attachedtriangles = quadrature["neighbours"][qp]
+        attachedtriangles = attachedtriangles[attachedtriangles>-1] # drop 
+        lol = []
+        for at in attachedtriangles:
+            tmp = quadrature["triangles"][at]
+            tmp = tmp[tmp != qp ]
+            lol.append(list(tmp))
+
+        _,x =  domino(lol)
+        connection[qp,:len(x)] = x
+        
+    quadrature["connection"] = connection
 
     return quadrature
 
 
-
-def color_land(quadrature):
+def get_land(quadrature):
     bm = Basemap()  
-    colors = []
+    island = []
     for i,(ypt, xpt) in enumerate(zip(quadrature["lat"],quadrature["lon"])):
         land = (bm.is_land(xpt,ypt))  
-        colors.append("tab:green" if land else "tab:blue")
+        island.append(land)
+    return array(island)
+    
+def color_land(quadrature):
+    island = get_land(quadrature)
+    colors = ["tab:green" if land else "tab:blue" for land in island]
     return colors
 
 def color_country(quadrature):
@@ -100,3 +120,14 @@ def color_country(quadrature):
     colorland = color_land(quadrature) # so we can color the ocean also in "tab:blue"
     colorcountries = [colordict[country] if colorland[i]!="tab:blue" else "tab:blue" for i,country in enumerate(countries) ]
     return colorcountries
+
+
+
+def applyupdate(quadrature,rule,states):
+    nextstate = zeros_like(states)
+    
+    for i,(state, neighbours) in enumerate(zip(states,quadrature["connection"])):
+        idx = neighbours[neighbours>-1]
+        stateneighbours = states[idx]
+        nextstate[i] = rule(state,stateneighbours)
+    return nextstate
