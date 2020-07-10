@@ -8,8 +8,11 @@ Clone the repository and run through the cells of `visworld.ipynb` found [here](
 
 If you encounter an issue with `mpl_toolkits` (I did), this [link](https://stackoverflow.com/questions/37661119/python-mpl-toolkits-installation-issue) might  help. Otherwise, try the Google Colab version.
 
-## Google Colab
+### Google Colab
 I ported the Jupyter notebook to Google Colab. In the process, I had move the `helpers.py` file in the notebook.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/camminady/sPYnning/blob/master/visworld_colab.ipynb)
+
 
 
 ## Globe
