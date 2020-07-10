@@ -19,6 +19,8 @@ I ported the Jupyter notebook to Google Colab. In the process, I had move the `h
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/camminady/sPYnning/blob/master/visworld_colab.ipynb)
 
+Note that the Colab notebook is already outdated and contains only the initla animations, no diffusion or Game of Life.
+
 
 
 ## Globe
