@@ -3,6 +3,8 @@ Source code for animating a spinning globe, consisting of hexagons. This can be 
 
 For more images and GIFs, check out https://www.camminady.org/spinningglobe
 
+Note that this code is closely linked to the [PlatonicSolidsQuadratures](https://github.com/camminady/PlatonicSolidsQuadratures) repository which allows for an easier handling of quadrature related aspects. 
+
 ## How To?
 
 ### Locally
